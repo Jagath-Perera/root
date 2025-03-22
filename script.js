@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Scroll down after every message
       bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
 
-      let intervalTime = Math.random() * 3000; // Random interval between 0ms to 3000ms
+      let intervalTime = Math.random() * 1500; // Random interval between 0ms to 1500ms
       setTimeout(typeMessage, intervalTime); // Add an interval between messages
     } else {
       setTimeout(() => {
