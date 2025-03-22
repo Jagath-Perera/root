@@ -64,25 +64,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let index = 0;
 
- function typeMessage() {
-  if (index < bootMessages.length) {
-    bootText.textContent += bootMessages[index] + "\n";
-    index++;
-    
-    // Scroll down after every message
-    bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
-    
-    setTimeout(typeMessage, Math.random() * 150 + 50); // Slower booting speed (50-150ms per line)
-  } else {
-    setTimeout(() => {
-      bootScreen.style.opacity = "0"; // Fade out
+  function typeMessage() {
+    if (index < bootMessages.length) {
+      bootText.textContent += bootMessages[index] + "\n";
+      index++;
+      
+      // Scroll down after every message
+      bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
+
+      let intervalTime = Math.random() * 1000 + 500; // Random interval between 500ms to 1500ms
+      setTimeout(typeMessage, intervalTime); // Add an interval between messages
+    } else {
       setTimeout(() => {
-        bootScreen.style.display = "none"; // Hide boot screen
-        mainContent.style.display = "block"; // Show main content
-      }, 300);
-    }, 1000); // Slightly longer delay before switching
+        bootScreen.style.opacity = "0"; // Fade out boot screen
+        setTimeout(() => {
+          bootScreen.style.display = "none"; // Hide boot screen
+          mainContent.style.display = "block"; // Show main content
+        }, 300); // Wait for fade-out to complete
+      }, 1000); // Delay before switching
+    }
   }
-}
-  
+
+  // Start typing boot messages
   typeMessage();
 });
