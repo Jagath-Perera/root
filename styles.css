@@ -23,7 +23,7 @@ body, html {
   display: flex;
   align-items: flex-start; /* Align to top */
   justify-content: flex-end; /* Align to right */
-  text-align: right;
+  text-align: left;
   padding: 20px;
   overflow: hidden;
   transition: opacity 0.3s ease-out;
