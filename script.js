@@ -3,11 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const bootScreen = document.getElementById("boot-screen");
   const mainContent = document.getElementById("main-content");
 
-  if (!bootText || !bootScreen || !mainContent) {
-    console.error("Missing required elements!");
-    return;
-  }
-
+  // Boot-up text to display
   const text = `Booting up...
 [OK] Loading system...
 [OK] Initializing components...
@@ -18,21 +14,24 @@ Welcome to My Website!`;
 
   let index = 0;
 
+  // Typing effect function
   function type() {
     if (index < text.length) {
       bootText.textContent += text.charAt(index);
       index++;
-      setTimeout(type, 50); // Faster typing effect
+      setTimeout(type, 100); // Adjust typing speed (100ms per character)
     } else {
+      // Add a delay before switching to the main content
       setTimeout(() => {
-        bootScreen.style.opacity = "0";
+        bootScreen.style.opacity = "0"; // Fade out boot screen
         setTimeout(() => {
-          bootScreen.classList.add("hidden");
-          mainContent.classList.remove("hidden");
-        }, 500);
-      }, 2000);
+          bootScreen.classList.add("hidden"); // Hide boot screen
+          mainContent.classList.remove("hidden"); // Show main content
+        }, 500); // Wait for fade-out to complete
+      }, 2000); // Delay after typing finishes
     }
   }
 
+  // Start the typing effect
   type();
 });
