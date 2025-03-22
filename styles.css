@@ -21,8 +21,8 @@ body, html {
   font-family: monospace;
   font-size: 16px;
   display: flex;
-  align-items: flex-start; /* Align to top */
-  justify-content: flex-end; /* Align to right */
+  align-items: flex-start; /* Align text to top */
+  justify-content: flex-start; /* Align text to left */
   text-align: left;
   padding: 20px;
   overflow: hidden;
