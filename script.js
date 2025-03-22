@@ -27,7 +27,7 @@ Welcome to My Website!`;
         setTimeout(() => {
           bootScreen.classList.add("hidden"); // Hide boot screen
           mainContent.classList.remove("hidden"); // Show main content
-        }, 500); // Fade-out duration
+        }, 500); // Wait for fade-out to complete
       }, 2000); // Delay after typing finishes
     }
   }
