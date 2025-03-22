@@ -8,12 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // More detailed Linux-like boot sequence
+  // Linux-like Boot Messages (More Realistic)
   const bootMessages = [
     "Booting MyOS v1.0...",
-    "[OK] Initializing BIOS...",
+    "[OK] Loading BIOS...",
     "[OK] Checking CPU cores...",
     "[OK] Detecting RAM modules...",
+    "[OK] Initializing PCI devices...",
     "[OK] Verifying disk drives...",
     "[OK] Mounting root filesystem...",
     "[OK] Checking filesystem integrity...",
@@ -25,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
     "[OK] Launching SSH daemon...",
     "[OK] Starting firewall (iptables)...",
     "[OK] Enabling security services...",
-    "[OK] Checking for updates...",
-    "[OK] Loading desktop environment...",
+    "[OK] Checking for software updates...",
+    "[OK] Starting system scheduler...",
     "[OK] Running startup scripts...",
-    "[OK] Starting background services...",
     "[OK] Initializing graphical interface...",
+    "[OK] Loading user session...",
     "Welcome to MyOS v1.0!"
   ];
 
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (index < bootMessages.length) {
       bootText.textContent += bootMessages[index] + "\n";
       index++;
-      setTimeout(typeMessage, Math.random() * 100 + 30); // Faster typing speed
+      setTimeout(typeMessage, Math.random() * 80 + 20); // Fast booting speed
     } else {
       setTimeout(() => {
         bootScreen.style.opacity = "0"; // Fade out
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
           bootScreen.style.display = "none"; // Hide boot screen
           mainContent.style.display = "block"; // Show main content
         }, 300);
-      }, 1000);
+      }, 500);
     }
   }
 
