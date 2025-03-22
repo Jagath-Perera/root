@@ -14,6 +14,7 @@ body {
   align-items: center;
   height: 100vh;
   background-color: black;
+  transition: opacity 0.5s ease; /* Smooth fade-out transition */
 }
 
 #boot-text {
