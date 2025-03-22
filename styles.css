@@ -1,0 +1,52 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background-color: black;
+  color: limegreen;
+  overflow: hidden;
+}
+
+/* Boot Screen */
+#boot-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+#boot-text {
+  white-space: pre;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Blinking Cursor Effect */
+#boot-text::after {
+  content: "|";
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Main Content */
+.hidden {
+  display: none;
+}
+
+#main-content {
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  color: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
