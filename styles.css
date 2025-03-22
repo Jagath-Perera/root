@@ -17,13 +17,17 @@ body, html {
   width: 100%;
   height: 100%;
   background-color: black;
-  color: green;
+  color: #00ff00; /* Green text for Linux-style terminal */
   font-family: monospace;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: left;
-  transition: opacity 0.5s ease-out;
+  padding: 20px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  transition: opacity 0.3s ease-out;
 }
 
 #boot-text {
@@ -34,14 +38,14 @@ body, html {
 
 /* Blinking Cursor Effect */
 #boot-text::after {
-  content: "|";
-  animation: blink 1s steps(2, start) infinite;
+  content: "_";
+  display: inline-block;
+  animation: blink 0.5s steps(2, start) infinite;
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* Main Content */
