@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   let index = 0;
-  let password = "nPVg06Lrg2V3BW56aX25DgORtMyy"; // Short password (change this as needed)
+  let password = "1234"; // Short password (change this as needed)
   let passwordIndex = 0;
   let displayedPassword = "";
   
