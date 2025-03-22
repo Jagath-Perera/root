@@ -3,12 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const bootScreen = document.getElementById("boot-screen");
   const mainContent = document.getElementById("main-content");
 
-  if (!bootText || !bootScreen || !mainContent) {
-    console.error("Missing required elements!");
-    return;
-  }
-
-  // More realistic Linux boot sequence messages
+  // Boot-up text to display
   const bootMessages = [
     "Booting MyOS v1.0...",
     "[OK] Loading BIOS...",
@@ -62,29 +57,82 @@ document.addEventListener("DOMContentLoaded", function () {
     "Welcome to MyOS v1.0!"
   ];
 
-  let index = 0;
+  const loginMessages = [
+    "login: root", 
+    "Password:", 
+  ];
 
-  function typeMessage() {
-    if (index < bootMessages.length) {
-      bootText.textContent += bootMessages[index] + "\n";
+  let index = 0;
+  let password = "";
+  
+  // Function to type messages
+  function typeMessage(messages, callback) {
+    if (index < messages.length) {
+      bootText.textContent += messages[index] + "\n";
       index++;
-      
+
       // Scroll down after every message
       bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
 
-      let intervalTime = Math.random() * 1500; // Random interval between 0ms to 1500ms
-      setTimeout(typeMessage, intervalTime); // Add an interval between messages
+      // Random interval for next message (0 to 1500ms)
+      const randomInterval = Math.floor(Math.random() * 1501); // Random interval between 0ms and 1500ms
+      setTimeout(() => typeMessage(messages, callback), randomInterval); // Apply the random interval to next message
     } else {
-      setTimeout(() => {
-        bootScreen.style.opacity = "0"; // Fade out boot screen
-        setTimeout(() => {
-          bootScreen.style.display = "none"; // Hide boot screen
-          mainContent.style.display = "block"; // Show main content
-        }, 300); // Wait for fade-out to complete
-      }, 1000); // Delay before switching
+      if (callback) callback();
     }
   }
 
-  // Start typing boot messages
-  typeMessage();
+  // Function to simulate password input with * characters
+  function simulatePasswordInput(passwordInput, callback) {
+    let passwordIndex = 0;
+    let displayedPassword = "";
+    
+    function typePassword() {
+      if (passwordIndex < passwordInput.length) {
+        displayedPassword += "*"; // Add * for each password character
+        bootText.textContent = bootText.textContent.replace("Password:", "Password: " + displayedPassword); // Update the password display
+        passwordIndex++;
+
+        // Scroll down after every update
+        bootScreen.scrollTop = bootScreen.scrollHeight;
+
+        // Simulate typing speed
+        const randomInterval = Math.floor(Math.random() * 1501); // Random interval between 0ms and 1500ms
+        setTimeout(typePassword, randomInterval); // Apply the random interval to each character
+      } else {
+        if (callback) callback(); // Call callback after password is fully typed
+      }
+    }
+
+    typePassword();
+  }
+
+  // Function to show boot messages and then login sequence
+  function startBootSequence() {
+    typeMessage(bootMessages, () => {
+      setTimeout(() => {
+        // Start login sequence after a delay
+        bootText.textContent = ""; // Clear the previous text
+        index = 0; // Reset index for login sequence
+        typeMessage(loginMessages, () => {
+          // Simulate password input
+          simulatePasswordInput("rootpassword", () => {
+            setTimeout(() => {
+              // After login sequence is complete, fade out boot screen and show main content
+              setTimeout(() => {
+                bootScreen.style.opacity = "0"; // Fade out boot screen
+                setTimeout(() => {
+                  bootScreen.style.display = "none"; // Hide boot screen
+                  mainContent.style.display = "block"; // Show main content
+                }, 300); // Wait for fade-out to complete
+              }, 1000); // Delay before showing main content
+            }, 500); // Short delay before showing main content after login
+          });
+        });
+      }, 1000); // Wait for a short delay before starting login
+    });
+  }
+
+  // Start the boot sequence
+  startBootSequence();
 });
