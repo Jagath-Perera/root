@@ -68,6 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (index < bootMessages.length) {
     bootText.textContent += bootMessages[index] + "\n";
     index++;
+    
+    // Scroll down after every message
+    bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
+    
     setTimeout(typeMessage, Math.random() * 150 + 50); // Slower booting speed (50-150ms per line)
   } else {
     setTimeout(() => {
