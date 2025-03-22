@@ -57,81 +57,31 @@ document.addEventListener("DOMContentLoaded", function () {
     "Welcome to MyOS v1.0!"
   ];
 
-  const loginMessages = [
-    "login: root", 
-    "Password:"
-  ];
-
   let index = 0;
-  let password = "nPVg06Lrg2V3BW56aX25DgORtMyy"; // Short password (change this as needed)
-  let passwordIndex = 0;
-  let displayedPassword = "";
 
-  // Function to type messages with random intervals
-  function typeMessage(messages, callback) {
-    if (index < messages.length) {
-      bootText.textContent += messages[index] + "\n";
+  // Function to type messages
+  function typeMessage() {
+    if (index < bootMessages.length) {
+      bootText.textContent += bootMessages[index] + "\n";
       index++;
-
+      
       // Scroll down after every message
-      bootScreen.scrollTop = bootScreen.scrollHeight;
+      bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
 
       // Random interval for next message (0 to 1500ms)
-      const randomInterval = Math.floor(Math.random() * 1501); // Random interval between 0ms and 1500ms
-      setTimeout(() => typeMessage(messages, callback), randomInterval);
+      const randomInterval = Math.floor(Math.random() * 1001); // Random interval between 0ms and 1000ms
+      setTimeout(typeMessage, randomInterval); // Apply the random interval to next message
     } else {
-      if (callback) callback();
-    }
-  }
-
-  // Function to simulate password input with * characters in linear motion
-  function simulatePasswordInput(passwordInput, callback) {
-    // Show password with linear motion (one * after the other)
-    function typePassword() {
-      if (passwordIndex < passwordInput.length) {
-        displayedPassword += "*"; // Add * for each password character
-        bootText.textContent = bootText.textContent.replace("Password:", "Password: " + displayedPassword); // Update the password display
-        passwordIndex++;
-
-        // Scroll down after every update
-        bootScreen.scrollTop = bootScreen.scrollHeight;
-
-        // Short delay for each * in linear motion (adjust as needed)
-        setTimeout(typePassword, 500); // 500ms between each * character
-      } else {
-        if (callback) callback(); // Call callback after password is fully typed
-      }
-    }
-
-    typePassword();
-  }
-
-  // Function to show boot messages and then login sequence
-  function startBootSequence() {
-    typeMessage(bootMessages, () => {
       setTimeout(() => {
-        // Start login sequence after a delay
-        bootText.textContent = ""; // Clear the previous text
-        index = 0; // Reset index for login sequence
-        typeMessage(loginMessages, () => {
-          // Simulate password input
-          simulatePasswordInput(password, () => {
-            setTimeout(() => {
-              // After login sequence is complete, fade out boot screen and show main content
-              setTimeout(() => {
-                bootScreen.style.opacity = "0"; // Fade out boot screen
-                setTimeout(() => {
-                  bootScreen.style.display = "none"; // Hide boot screen
-                  mainContent.style.display = "block"; // Show main content
-                }, 300); // Wait for fade-out to complete
-              }, 1000); // Delay before showing main content
-            }, 500); // Short delay before showing main content after login
-          });
-        });
-      }, 1000); // Wait for a short delay before starting login
-    });
+        bootScreen.style.opacity = "0"; // Fade out boot screen
+        setTimeout(() => {
+          bootScreen.style.display = "none"; // Hide boot screen
+          mainContent.style.display = "block"; // Show main content
+        }, 300); // Wait for fade-out to complete
+      }, 1000); // Delay before switching
+    }
   }
 
-  // Start the boot sequence
-  startBootSequence();
+  // Start typing boot messages
+  typeMessage();
 });
