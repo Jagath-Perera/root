@@ -59,26 +59,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const loginMessages = [
     "login: root", 
-    "Password:", 
+    "Password:"
   ];
 
   let index = 0;
   let password = "nPVg06Lrg2V3BW56aX25DgORtMyy"; // Short password (change this as needed)
   let passwordIndex = 0;
   let displayedPassword = "";
-  
-  // Function to type messages
+
+  // Function to type messages with random intervals
   function typeMessage(messages, callback) {
     if (index < messages.length) {
       bootText.textContent += messages[index] + "\n";
       index++;
 
       // Scroll down after every message
-      bootScreen.scrollTop = bootScreen.scrollHeight; // Ensure scrolling to the bottom
+      bootScreen.scrollTop = bootScreen.scrollHeight;
 
       // Random interval for next message (0 to 1500ms)
       const randomInterval = Math.floor(Math.random() * 1501); // Random interval between 0ms and 1500ms
-      setTimeout(() => typeMessage(messages, callback), randomInterval); // Apply the random interval to next message
+      setTimeout(() => typeMessage(messages, callback), randomInterval);
     } else {
       if (callback) callback();
     }
