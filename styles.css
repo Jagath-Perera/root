@@ -25,8 +25,9 @@ body, html {
   justify-content: flex-start; /* Align text to left */
   text-align: left;
   padding: 20px;
-  overflow: hidden;
+  overflow-y: auto; /* Enable vertical scrolling */
   transition: opacity 0.3s ease-out;
+  box-sizing: border-box;
 }
 
 #boot-text {
