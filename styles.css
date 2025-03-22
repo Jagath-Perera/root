@@ -55,12 +55,12 @@ body, html {
 
 #main-content {
   padding: 20px;
-  text-align: center;
   background-color: white; /* White background */
   color: black; /* Black text */
   height: 100vh; /* Full height */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
