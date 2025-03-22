@@ -1,6 +1,8 @@
 /* General Styles */
-body {
+body, html {
   margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure body and html take up full height */
   font-family: 'Courier New', monospace;
   background-color: black;
   color: limegreen;
@@ -43,9 +45,9 @@ body {
 #main-content {
   padding: 20px;
   text-align: center;
-  background-color: white;
-  color: black;
-  height: 100vh;
+  background-color: white; /* White background */
+  color: black; /* Black text */
+  height: 100vh; /* Full height */
   display: flex;
   flex-direction: column;
   justify-content: center;
