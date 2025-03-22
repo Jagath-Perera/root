@@ -7,6 +7,9 @@ body, html {
   background-color: black;
   color: limegreen;
   overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Allow full height usage */
+  justify-content: flex-start;
 }
 
 /* Boot Screen */
@@ -19,17 +22,18 @@ body, html {
   background-color: black;
   color: white; /* White text for terminal effect */
   font-family: monospace;
-  font-size: 16px;
+  font-size: 2vw; /* Responsive font size */
   display: flex;
   align-items: flex-start; /* Align text to top */
   justify-content: flex-start; /* Align text to left */
   text-align: left;
-  padding: 20px;
+  padding: 5%; /* Responsive padding for smaller screens */
   overflow-y: auto; /* Enable vertical scrolling */
-  transition: opacity 0.3s ease-out;
   box-sizing: border-box;
+  transition: opacity 0.3s ease-out;
 }
 
+/* Boot Text */
 #boot-text {
   white-space: pre-wrap;
   font-size: 1.2rem;
@@ -54,7 +58,7 @@ body, html {
 }
 
 #main-content {
-  padding: 20px;
+  padding: 10%; /* Reduce padding for smaller screens */
   background-color: white; /* White background */
   color: black; /* Black text */
   height: 100vh; /* Full height */
@@ -63,4 +67,25 @@ body, html {
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: opacity 0.5s ease-in;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #boot-screen {
+    font-size: 4vw; /* Increase font size for small screens */
+    padding: 10%; /* Add more padding on smaller screens */
+  }
+
+  #main-content {
+    padding: 15%; /* Adjust padding for mobile */
+  }
+
+  #main-content h1 {
+    font-size: 3rem; /* Increase heading size */
+  }
+
+  #main-content p {
+    font-size: 1.2rem;
+  }
 }
