@@ -8,31 +8,48 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  const text = `Booting up...
-[OK] Loading system...
-[OK] Initializing components...
-[OK] Starting services...
-[OK] Mounting filesystems...
-[OK] Starting network...
-Welcome to My Website!`;
+  // More detailed Linux-like boot sequence
+  const bootMessages = [
+    "Booting MyOS v1.0...",
+    "[OK] Initializing BIOS...",
+    "[OK] Checking CPU cores...",
+    "[OK] Detecting RAM modules...",
+    "[OK] Verifying disk drives...",
+    "[OK] Mounting root filesystem...",
+    "[OK] Checking filesystem integrity...",
+    "[OK] Enabling swap memory...",
+    "[OK] Loading kernel modules...",
+    "[OK] Detecting hardware devices...",
+    "[OK] Initializing network interfaces...",
+    "[OK] Starting system logging service...",
+    "[OK] Launching SSH daemon...",
+    "[OK] Starting firewall (iptables)...",
+    "[OK] Enabling security services...",
+    "[OK] Checking for updates...",
+    "[OK] Loading desktop environment...",
+    "[OK] Running startup scripts...",
+    "[OK] Starting background services...",
+    "[OK] Initializing graphical interface...",
+    "Welcome to MyOS v1.0!"
+  ];
 
   let index = 0;
 
-  function type() {
-    if (index < text.length) {
-      bootText.textContent += text.charAt(index);
+  function typeMessage() {
+    if (index < bootMessages.length) {
+      bootText.textContent += bootMessages[index] + "\n";
       index++;
-      setTimeout(type, 50);
+      setTimeout(typeMessage, Math.random() * 100 + 30); // Faster typing speed
     } else {
       setTimeout(() => {
-        bootScreen.style.opacity = "0";
+        bootScreen.style.opacity = "0"; // Fade out
         setTimeout(() => {
-          bootScreen.style.display = "none"; // Ensures it's removed
-          mainContent.style.display = "block"; // Make main content visible
-        }, 500);
-      }, 2000);
+          bootScreen.style.display = "none"; // Hide boot screen
+          mainContent.style.display = "block"; // Show main content
+        }, 300);
+      }, 1000);
     }
   }
 
-  type();
+  typeMessage();
 });
