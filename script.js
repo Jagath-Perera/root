@@ -63,7 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   let index = 0;
-  let password = "";
+  let password = "nPVg06Lrg2V3BW56aX25DgORtMyy"; // Short password (change this as needed)
+  let passwordIndex = 0;
+  let displayedPassword = "";
   
   // Function to type messages
   function typeMessage(messages, callback) {
@@ -82,11 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Function to simulate password input with * characters
+  // Function to simulate password input with * characters in linear motion
   function simulatePasswordInput(passwordInput, callback) {
-    let passwordIndex = 0;
-    let displayedPassword = "";
-    
+    // Show password with linear motion (one * after the other)
     function typePassword() {
       if (passwordIndex < passwordInput.length) {
         displayedPassword += "*"; // Add * for each password character
@@ -96,9 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Scroll down after every update
         bootScreen.scrollTop = bootScreen.scrollHeight;
 
-        // Simulate typing speed
-        const randomInterval = Math.floor(Math.random() * 1501); // Random interval between 0ms and 1500ms
-        setTimeout(typePassword, randomInterval); // Apply the random interval to each character
+        // Short delay for each * in linear motion (adjust as needed)
+        setTimeout(typePassword, 500); // 500ms between each * character
       } else {
         if (callback) callback(); // Call callback after password is fully typed
       }
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         index = 0; // Reset index for login sequence
         typeMessage(loginMessages, () => {
           // Simulate password input
-          simulatePasswordInput("rootpassword", () => {
+          simulatePasswordInput(password, () => {
             setTimeout(() => {
               // After login sequence is complete, fade out boot screen and show main content
               setTimeout(() => {
